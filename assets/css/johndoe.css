@@ -11818,6 +11818,19 @@ h2.mb-5.my-portfolio {
   border-radius: 50%;
 }
 
+.store-badge {
+  max-height: 40px;  /* or whatever fits your design */
+  width: auto;       /* preserves aspect ratio */
+  display: block;    /* removes inline-img whitespace if any */
+}
+
+.btn-group {
+  display: flex;
+  gap: 8px;          /* space between badges */
+  margin-top: 12px;  /* space from subtitle */
+  align-items: center;
+}
+
 .navbar .brand .brand-txt {
   position: relative;
   bottom: -20px;
