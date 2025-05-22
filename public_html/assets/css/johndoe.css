@@ -1,45 +1,7 @@
 @charset "UTF-8";
-/*!
-=========================================================
-* JohnDoe Landing page
-=========================================================
-
-* Copyright: 2019 DevCRUD (https://devcrud.com)
-* Licensed: (https://devcrud.com/licenses)
-* Coded by www.devcrud.com
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i&display=swap");
 :root {
-  --blue: #79a9f5;
-  --indigo: #c45f90;
-  --purple: #a16ae8;
-  --pink: #fc8bc0;
-  --red: #f85c70;
-  --orange: #ff8882;
-  --yellow: #fad02c;
-  --green: #a3c14a;
-  --teal: #20c997;
-  --cyan: #47d8e0;
-  --white: #fff;
-  --gray: #6c757d;
-  --gray-dark: #343a40;
-  --primary: #f85c70;
-  --secondary: #6c757d;
-  --success: #a3c14a;
-  --info: #47d8e0;
-  --warning: #ff8882;
-  --danger: #f85c70;
-  --light: #f8f9fa;
-  --dark: #343a40;
-  --breakpoint-xs: 0;
-  --breakpoint-sm: 576px;
-  --breakpoint-md: 768px;
-  --breakpoint-lg: 992px;
-  --breakpoint-xl: 1200px;
+  --gold: #d29501;
   --font-family-sans-serif: "Source Sans Pro", sans-serif;
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
     "Liberation Mono", "Courier New", monospace;
@@ -2943,19 +2905,19 @@ fieldset:disabled a.btn {
 
 .btn-primary {
   color: #fff;
-  background-color: #f85c70;
-  border-color: #f85c70;
+  background-color: var(--gold);
+  border-color: var(--gold);
 }
 
 .btn-primary:hover {
   color: #fff;
-  background-color: #f63750;
-  border-color: #f62b45;
+  background-color: transparent;
+  border-color: var(--gold);
 }
 
 .btn-primary:focus,
 .btn-primary.focus {
-  box-shadow: 0 0 0 0.2rem rgba(249, 116, 133, 0.5);
+  box-shadow: unset;
 }
 
 .btn-primary.disabled,
@@ -7569,14 +7531,14 @@ button.bg-warning:focus {
 }
 
 .bg-danger {
-  background-color: #f85c70 !important;
+  background-color: var(--gold) !important;
 }
 
 a.bg-danger:hover,
 a.bg-danger:focus,
 button.bg-danger:hover,
 button.bg-danger:focus {
-  background-color: #f62b45 !important;
+  background-color: var(--gold) !important;
 }
 
 .bg-light {
@@ -11205,12 +11167,12 @@ a.text-warning:focus {
 }
 
 .text-danger {
-  color: #f85c70 !important;
+  color: var(--gold) !important;
 }
 
 a.text-danger:hover,
 a.text-danger:focus {
-  color: #f51330 !important;
+  color: var(--gold) !important;
 }
 
 .text-light {
@@ -11397,7 +11359,7 @@ p {
   display: block;
   width: 25px;
   height: 1.5px;
-  background-color: #f85c70;
+  background-color: var(--gold);
 }
 
 .breadcrumb {
@@ -11624,7 +11586,7 @@ p {
   transform: translate(-50%, -50%);
   width: 100%;
   height: 100%;
-  background: rgba(248, 92, 112, 0.8);
+  background: rgba(210, 149, 1, 0.8);
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -11830,16 +11792,17 @@ h2.mb-5.my-portfolio {
 }
 
 .navbar .nav-link.active {
-  color: #f85c70 !important;
+  color: var(--gold) !important;
 }
 
 .navbar .brand {
-  text-align: center;
+  position: relative;
+  right: 27px;
 }
 
 .navbar .brand .brand-img {
   position: absolute;
-  left: 50%;
+  left: 43%;
   top: 50%;
   -webkit-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
@@ -11853,6 +11816,19 @@ h2.mb-5.my-portfolio {
   box-shadow: 0 5px 1px rgba(128, 128, 128, 0.13);
   width: 170px;
   border-radius: 50%;
+}
+
+.store-badge {
+  max-height: 40px;  /* or whatever fits your design */
+  width: auto;       /* preserves aspect ratio */
+  display: block;    /* removes inline-img whitespace if any */
+}
+
+.btn-group {
+  display: flex;
+  gap: 8px;          /* space between badges */
+  margin-top: 12px;  /* space from subtitle */
+  align-items: center;
 }
 
 .navbar .brand .brand-txt {
@@ -11939,13 +11915,13 @@ h2.mb-5.my-portfolio {
     gap: 10px;
   }
   .flutter {
-    display: block ;
-}
+    display: block;
+  }
 }
 @media (max-width: 768px) {
   .col-md-3 {
     padding-bottom: 12px;
-}
+  }
 }
 @media (max-width: 424px) {
   h2.flutter.m-0 {
@@ -11965,24 +11941,22 @@ h2.mb-5.my-portfolio {
   }
 }
 
+@media (max-width: 425px) {
+
+}
+
 .header {
   position: relative;
-  height: 80vh;
+  height: 100vh;
   min-height: 600px;
-  background-image: -webkit-linear-gradient(
-      bottom,
-      rgba(0, 0, 0, 0.7),
-      rgba(0, 0, 0, 0.7)
-    ),
-    url(../imgs/header.jpg);
   background-image: linear-gradient(
       to top,
       rgba(0, 0, 0, 0.7),
       rgba(0, 0, 0, 0.7)
     ),
-    url(../imgs/header.jpg);
+    url(../imgs/header2.png);
   background-size: cover;
-  background-position: center;
+  background-position: top;
   background-repeat: no-repeat;
   background-attachment: fixed;
   color: #fff;
@@ -11994,9 +11968,9 @@ h2.mb-5.my-portfolio {
 }
 
 .header .header-content {
-  width: 100%;
+  width:auto;
   position: absolute;
-  left: 0;
+  left: 65%;
   top: 55%;
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
@@ -12012,7 +11986,7 @@ h2.mb-5.my-portfolio {
 }
 
 .header .header-content .header-title {
-  font-size: calc(40px + (120 - 40) * ((100vw - 300px) / (1600 - 300)));
+  font-size: 4.5rem;
   font-weight: bold;
   line-height: 0.7;
   margin-bottom: 25px;
@@ -12025,11 +11999,72 @@ h2.mb-5.my-portfolio {
   padding-bottom: 20px;
 }
 
-@media (max-width: 767.98px) {
-  .header {
-    height: 500px;
-    min-height: 500px;
+@media (max-width: 1246px) {
+  .header .header-content {
+    left: 60%;
   }
+  .header .header-content .header-title {
+    font-size: 4rem;
+  }
+}
+@media (max-width: 992px) {
+  .header .header-content .header-title {
+    font-size: 3.2rem;
+}
+}
+@media (max-width: 768px) {
+  .header .header-content {
+    padding: 0px !important;
+}
+  .header .header-content .header-title {
+    font-size: 2.5rem;
+}
+}
+
+@media (max-width: 590px) {
+  .header .header-content {
+    left: 55%;
+}
+}
+@media (max-width: 560px)  {
+  .header {
+    background-image: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.7),
+      rgba(0, 0, 0, 0.7)
+    ),
+    url(../imgs/header1.png);
+  }
+  .header .header-content .header-title {
+    font-size: 3.5rem;
+}
+  .header .header-content {
+    left: 22%;
+    top: 70%;
+}
+}
+@media (max-width: 426px) {
+  .header .header-content {
+    left: 18%;
+    top: 63%;
+}
+.header .header-content .header-title {
+  font-size: 3rem;
+}
+}
+
+@media (max-width: 375px) {
+  .header .header-content {
+    left: 15%;
+}
+}
+@media (max-width: 320px) {
+  .header .header-content {
+    left: 11%;
+}
+}
+
+@media (max-width: 767.98px) {
   .header .social-icons {
     margin: auto;
   }
@@ -12039,6 +12074,11 @@ h2.mb-5.my-portfolio {
   .header .header-content .header-mono {
     letter-spacing: 2px;
   }
+}
+
+.btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active, .show > .btn-primary.dropdown-toggle{
+  background-color: transparent !important;
+  border-color: var(--gold) !important;
 }
 
 .header-title {
@@ -12080,15 +12120,30 @@ h2.mb-5.my-portfolio {
 .section.bg-custom-gray {
   background: rgba(242, 244, 247, 0.15);
 }
-
-.about-section {
+button#testpdf {
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 0;
+  border-bottom-right-radius: 0;
+  height: 45px;
 }
-
-button.btn.btn-outline-danger a {
+button.download {
+  background: var(--gold);
+  border: 1px solid var(--gold);
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  height: 50px;
+  color: #fff;
+}
+.download a {
   font-size: 1.2rem;
+  color: #fff;
 }
-.btn-outline-danger a:hover {
-  color: #fff !important;
+.download:hover {
+  background-color: transparent;
+  border-color: var(--gold);
+  color: #000 !important;
+  transition: transform 0.2s;
 }
 
 .about-section .about-card {
