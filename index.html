@@ -1,617 +1,1876 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Start your development with JohnDoe landing page.">
-    <meta name="author" content="Devcrud">
+    <meta name="description" content="Ali Nezamli - Senior Flutter Developer Portfolio">
+    <meta name="author" content="Ali Nezamli">
     <title>Ali Nezamli's Portfolio</title>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&family=Lato:wght@300;400;700;900&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Noto+Kufi+Arabic:wght@200;300;400;500;600;700;800;900&family=Poppins:wght@200;300;400;500;600;700;800;900&family=Raleway:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@500&family=Source+Code+Pro:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <!-- font icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Icons -->
     <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
-    <!-- Bootstrap + JohnDoe main styles -->
+    <!-- Bootstrap -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css">
-	<link rel="stylesheet" href="assets/css/johndoe.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.min.js"></script>
 
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --primary-light: #818cf8;
+            --secondary: #0ea5e9;
+            --accent: #f43f5e;
+            --dark: #0f172a;
+            --dark-light: #1e293b;
+            --gray: #64748b;
+            --gray-light: #94a3b8;
+            --light: #f1f5f9;
+            --white: #ffffff;
+            --gradient-primary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #d946ef 100%);
+            --gradient-secondary: linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%);
+            --gradient-dark: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+            --shadow-glow: 0 0 40px rgba(99, 102, 241, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .bg-animated {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: var(--gradient-dark);
+            overflow: hidden;
+        }
+
+        .bg-animated::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 50%);
+            animation: pulse 15s ease-in-out infinite;
+        }
+
+        .bg-animated::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -25%;
+            width: 50%;
+            height: 50%;
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.08) 0%, transparent 50%);
+            animation: pulse 20s ease-in-out infinite reverse;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(5%, 5%) scale(1.1); }
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 2rem;
+            overflow: hidden;
+        }
+
+        /* Animated Hero Background */
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .hero-bg .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.6;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .hero-bg .orb-1 {
+            width: 600px;
+            height: 600px;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.4) 0%, rgba(139, 92, 246, 0.3) 100%);
+            top: -20%;
+            left: -10%;
+            animation-delay: 0s;
+        }
+
+        .hero-bg .orb-2 {
+            width: 500px;
+            height: 500px;
+            background: linear-gradient(135deg, rgba(217, 70, 239, 0.3) 0%, rgba(99, 102, 241, 0.2) 100%);
+            bottom: -15%;
+            right: -10%;
+            animation-delay: -5s;
+            animation-duration: 25s;
+        }
+
+        .hero-bg .orb-3 {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.3) 0%, rgba(99, 102, 241, 0.2) 100%);
+            top: 40%;
+            right: 20%;
+            animation-delay: -10s;
+            animation-duration: 30s;
+        }
+
+        .hero-bg .orb-4 {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.4) 0%, rgba(217, 70, 239, 0.2) 100%);
+            bottom: 30%;
+            left: 10%;
+            animation-delay: -15s;
+            animation-duration: 22s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg) scale(1);
+            }
+            25% {
+                transform: translate(30px, -30px) rotate(5deg) scale(1.05);
+            }
+            50% {
+                transform: translate(-20px, 20px) rotate(-5deg) scale(0.95);
+            }
+            75% {
+                transform: translate(-30px, -20px) rotate(3deg) scale(1.02);
+            }
+        }
+
+        /* Grid Pattern */
+        .hero-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(99, 102, 241, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%);
+            -webkit-mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%);
+        }
+
+        /* Floating Particles */
+        .hero-particles {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--primary-light);
+            border-radius: 50%;
+            opacity: 0;
+            animation: particleFloat 8s ease-in-out infinite;
+        }
+
+        .particle:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { left: 20%; animation-delay: 1s; }
+        .particle:nth-child(3) { left: 30%; animation-delay: 2s; }
+        .particle:nth-child(4) { left: 40%; animation-delay: 3s; }
+        .particle:nth-child(5) { left: 50%; animation-delay: 4s; }
+        .particle:nth-child(6) { left: 60%; animation-delay: 5s; }
+        .particle:nth-child(7) { left: 70%; animation-delay: 6s; }
+        .particle:nth-child(8) { left: 80%; animation-delay: 7s; }
+        .particle:nth-child(9) { left: 90%; animation-delay: 0.5s; }
+        .particle:nth-child(10) { left: 15%; animation-delay: 1.5s; }
+        .particle:nth-child(11) { left: 25%; animation-delay: 2.5s; }
+        .particle:nth-child(12) { left: 35%; animation-delay: 3.5s; }
+        .particle:nth-child(13) { left: 45%; animation-delay: 4.5s; }
+        .particle:nth-child(14) { left: 55%; animation-delay: 5.5s; }
+        .particle:nth-child(15) { left: 65%; animation-delay: 6.5s; }
+        .particle:nth-child(16) { left: 75%; animation-delay: 7.5s; }
+        .particle:nth-child(17) { left: 85%; animation-delay: 0.8s; }
+        .particle:nth-child(18) { left: 95%; animation-delay: 1.8s; }
+        .particle:nth-child(19) { left: 5%; animation-delay: 2.8s; }
+        .particle:nth-child(20) { left: 12%; animation-delay: 3.8s; }
+
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100px) scale(1);
+                opacity: 0;
+            }
+        }
+
+        /* Glowing Ring */
+        .hero-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 800px;
+            border-radius: 50%;
+            border: 1px solid rgba(99, 102, 241, 0.1);
+            animation: ringPulse 4s ease-in-out infinite;
+        }
+
+        .hero-ring::before {
+            content: '';
+            position: absolute;
+            inset: 60px;
+            border-radius: 50%;
+            border: 1px solid rgba(139, 92, 246, 0.08);
+            animation: ringPulse 4s ease-in-out infinite reverse;
+        }
+
+        .hero-ring::after {
+            content: '';
+            position: absolute;
+            inset: 120px;
+            border-radius: 50%;
+            border: 1px solid rgba(217, 70, 239, 0.06);
+            animation: ringPulse 5s ease-in-out infinite;
+        }
+
+        @keyframes ringPulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 0.8;
+            }
+        }
+
+        /* Shooting Stars */
+        .shooting-star {
+            position: absolute;
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-light), transparent);
+            border-radius: 50%;
+            animation: shoot 3s ease-in-out infinite;
+            opacity: 0;
+        }
+
+        .shooting-star:nth-child(1) {
+            top: 20%;
+            left: 0;
+            animation-delay: 0s;
+        }
+
+        .shooting-star:nth-child(2) {
+            top: 40%;
+            left: 20%;
+            animation-delay: 2s;
+        }
+
+        .shooting-star:nth-child(3) {
+            top: 10%;
+            left: 60%;
+            animation-delay: 4s;
+        }
+
+        @keyframes shoot {
+            0% {
+                transform: translateX(0) translateY(0) rotate(-45deg);
+                opacity: 0;
+            }
+            5% {
+                opacity: 1;
+            }
+            20% {
+                transform: translateX(300px) translateY(300px) rotate(-45deg);
+                opacity: 0;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 900px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            color: var(--primary-light);
+            margin-bottom: 1.5rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: blink 2s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.25rem, 3vw, 1.75rem);
+            color: var(--gray-light);
+            font-weight: 400;
+            margin-bottom: 2rem;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary-custom {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: var(--gradient-primary);
+            color: var(--white);
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-md), var(--shadow-glow);
+        }
+
+        .btn-primary-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg), 0 0 60px rgba(99, 102, 241, 0.4);
+            color: var(--white);
+        }
+
+        .btn-secondary-custom {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: transparent;
+            color: var(--light);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary-custom:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.4);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--gray);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .scroll-indicator .mouse {
+            width: 24px;
+            height: 40px;
+            border: 2px solid var(--gray);
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .scroll-indicator .mouse::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 8px;
+            background: var(--primary);
+            border-radius: 2px;
+            animation: scroll 2s ease-in-out infinite;
+        }
+
+        @keyframes scroll {
+            0%, 100% { top: 8px; opacity: 1; }
+            50% { top: 18px; opacity: 0.3; }
+        }
+
+        /* Navigation */
+        .navbar-custom {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-custom.scrolled {
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0.75rem 2rem;
+        }
+
+        .navbar-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-brand-custom {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .navbar-brand-custom img {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            object-fit: cover;
+            border: 2px solid rgba(99, 102, 241, 0.5);
+        }
+
+        .navbar-brand-custom span {
+            color: var(--light);
+            font-weight: 700;
+            font-size: 1.125rem;
+        }
+
+        .navbar-nav-custom {
+            display: flex;
+            gap: 0.5rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar-nav-custom a {
+            display: block;
+            padding: 0.75rem 1.25rem;
+            color: var(--gray-light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9375rem;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .navbar-nav-custom a:hover,
+        .navbar-nav-custom a.active {
+            color: var(--white);
+            background: rgba(99, 102, 241, 0.2);
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: transparent;
+            border: none;
+            color: var(--light);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        /* Sections */
+        .section {
+            padding: 6rem 2rem;
+            position: relative;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-tag {
+            display: inline-block;
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--primary-light);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .about-content h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-content p {
+            color: var(--gray-light);
+            font-size: 1.0625rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .about-info {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .about-info h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+        }
+
+        .info-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 2rem 0;
+        }
+
+        .info-list li {
+            display: flex;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .info-list li:last-child {
+            border-bottom: none;
+        }
+
+        .info-list .label {
+            width: 120px;
+            color: var(--gray);
+            font-weight: 500;
+        }
+
+        .info-list .value {
+            color: var(--light);
+        }
+
+        .info-list a {
+            color: var(--primary-light);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .info-list a:hover {
+            color: var(--primary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .social-links img {
+            width: 24px;
+            height: 24px;
+            filter: brightness(0) invert(1);
+            opacity: 0.8;
+        }
+
+        .social-links a:hover img {
+            opacity: 1;
+        }
+
+        /* Experience Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 1px;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 3rem;
+        }
+
+        .timeline-item:last-child {
+            padding-bottom: 0;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2rem;
+            top: 0;
+            width: 14px;
+            height: 14px;
+            background: var(--primary);
+            border-radius: 50%;
+            transform: translateX(-6px);
+            box-shadow: 0 0 0 4px var(--dark), 0 0 20px rgba(99, 102, 241, 0.5);
+        }
+
+        .timeline-card {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-card:hover {
+            border-color: rgba(99, 102, 241, 0.3);
+            transform: translateX(5px);
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .timeline-company {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary-light);
+        }
+
+        .timeline-period {
+            font-size: 0.875rem;
+            color: var(--gray);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+        }
+
+        .timeline-role {
+            font-size: 1rem;
+            color: var(--white);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-description {
+            color: var(--gray-light);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .timeline-achievements {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .timeline-achievements li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--gray-light);
+            font-size: 0.875rem;
+            line-height: 1.6;
+        }
+
+        .timeline-achievements li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            width: 6px;
+            height: 6px;
+            background: var(--secondary);
+            border-radius: 50%;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .skill-category h4 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-category h4 .icon {
+            width: 32px;
+            height: 32px;
+            background: var(--gradient-primary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+
+        .skill-item {
+            margin-bottom: 1.25rem;
+        }
+
+        .skill-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-name {
+            color: var(--light);
+            font-weight: 500;
+            font-size: 0.9375rem;
+        }
+
+        .skill-percent {
+            color: var(--gray);
+            font-size: 0.875rem;
+        }
+
+        .skill-bar {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: var(--gradient-primary);
+            border-radius: 4px;
+            transition: width 1s ease-out;
+        }
+
+        /* Portfolio Grid */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .portfolio-card {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(99, 102, 241, 0.5);
+            box-shadow: var(--shadow-lg), 0 0 40px rgba(99, 102, 241, 0.2);
+        }
+
+        .portfolio-image {
+            position: relative;
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .portfolio-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .portfolio-card:hover .portfolio-image img {
+            transform: scale(1.1);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(15, 23, 42, 0.9) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .portfolio-card:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-content {
+            padding: 1.5rem;
+        }
+
+        .portfolio-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+
+        .portfolio-description {
+            color: var(--gray-light);
+            font-size: 0.875rem;
+            line-height: 1.6;
+            margin-bottom: 1.25rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .portfolio-links {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .store-badge {
+            height: 36px;
+            width: auto;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .store-badge:hover {
+            transform: scale(1.05);
+        }
+
+        /* Education Card */
+        .education-card {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .education-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--gradient-primary);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .education-card h4 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .education-card .period {
+            color: var(--gray);
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+
+        .education-card p {
+            color: var(--light);
+            font-size: 1.0625rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(15, 23, 42, 0.9);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 4rem 2rem;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .footer-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .footer-icon img {
+            width: 24px;
+            height: 24px;
+            filter: brightness(0) saturate(100%) invert(59%) sepia(95%) saturate(2089%) hue-rotate(209deg) brightness(101%) contrast(91%);
+        }
+
+        .footer-item h6 {
+            font-size: 0.875rem;
+            color: var(--gray);
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+
+        .footer-item a,
+        .footer-item span {
+            color: var(--light);
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        .footer-item a:hover {
+            color: var(--primary-light);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .footer-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-social img {
+            width: 22px;
+            height: 22px;
+            filter: brightness(0) invert(1);
+            opacity: 0.8;
+        }
+
+        .footer-social a:hover img {
+            opacity: 1;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar-nav-custom {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(15, 23, 42, 0.98);
+                backdrop-filter: blur(20px);
+                padding: 1rem;
+                flex-direction: column;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .navbar-nav-custom.active {
+                display: flex;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn-primary-custom,
+            .btn-secondary-custom {
+                width: 100%;
+                max-width: 280px;
+                justify-content: center;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 4rem 1rem;
+            }
+
+            .footer-social {
+                justify-content: flex-start;
+            }
+        }
+
+        /* Animations */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
-<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
-    <header class="header">
-        <div class="container">
-            <div class="header-content text-center">
-                <h4 class="header-subtitle" >Hello, I am</h4>
-                <h2 class="header-title">Ali Nezamli</h2>
-                <h5 class="header-mono" >Senior Flutter Developer</h4>
-                    <a href="assets/Ali_Nezamli.pdf" target="_blank">
-                <button id="testpdf" class="btn btn-primary btn-rounded"><i class="ti-printer pr-2"></i>
-                    Print Resume
-                </button>
-            </a>
-            </div>
-        </div>
-    </header>
+<body id="home">
+    <div class="bg-animated"></div>
 
-    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-white" data-spy="affix" data-offset-top="510">
-        <div class="container">
-            <h4 class="flutter m-0">Flutter Developer</h4>
-            <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+    <!-- Navigation -->
+    <nav class="navbar-custom" id="navbar">
+        <div class="navbar-container">
+            <a href="#home" class="navbar-brand-custom">
+                <img src="assets/imgs/avatar.png" alt="Ali Nezamli">
+                <span>Ali Nezamli</span>
+            </a>
+            <ul class="navbar-nav-custom" id="navMenu">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="mobile-toggle" id="mobileToggle">
+                <i class="ti-menu"></i>
             </button>
-            <div class="collapse mt-sm-20 navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a href="#home" class="nav-link">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#about" class="nav-link">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#resume" class="nav-link">Resume</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav brand">
-                    <img src="assets/imgs/avatar.png" alt="" class="brand-img">
-                    <li class="brand-txt">
-                        <h5 class="brand-title">Ali Nezamli</h5>
-                        <div class="brand-subtitle">Senior Flutter Developer</div>
-                    </li>
-                </ul>
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a href="#portfolio" class="nav-link">Portfolio</a>
-                    </li>
-                    <!-- <li class="nav-item">
-                        <a href="#blog" class="nav-link">Blog</a>
-                    </li> -->
-                    <li class="nav-item last-item">
-                        <a href="#contact" class="nav-link">Contact</a>
-                    </li>
-                </ul>
-            </div>
         </div>
     </nav>
 
-    <div class="container-fuild">
-        <div id="about" class="row about-section p-0 m-0">
-            <div class="col-md-6 about-card">
-                <h2 class="font-weight-light">Who am I ?</h2>
-                <span class="line mb-5"></span>
-                <h3 class="mb-3">Senior Flutter Developer</h3>
-                <p class="mt-20">I am a passionate and results-driven Flutter Application Developer with a proven record of delivering innovative and user-centric mobile applications. My blend of technical expertise and leadership abilities empowers me to tackle complex challenges effectively, consistently exceeding project expectations. I excel in fast-paced, dynamic environments, efficiently managing multiple projects and thriving under pressure. Committed to continuous learning and professional growth, I am always eager to adopt new skills and technologies to bring additional value to every project I undertake.
-                </p>
-                <div class="button-download">
-                    <a href="assets/Ali_Nezamli.pdf" download>
-                        <button class="download">
-                            Download My CV
-                        </button>
-                    </a>
-                </div>
-
-            </div>
-            <div class="col-md-6 about-card">
-                <h2 class="font-weight-light">Personal Info</h2>
-                <span class="line mb-5"></span>
-                <ul class="mt40 info list-unstyled">
-                    <li><span>Birthdate</span> : 02/01/1996</li>
-                    <li>
-                        <span>Email</span> : 
-                        <a href="mailto:alinezamli54@gmail.com" style="color: blue;">alinezamli54@gmail.com</a>
-                    </li>
-                    <li>
-                        <span>Phone</span> : 
-                        <a href="tel:+971586272210" style="color: blue;">+ (971) 586272210</a>
-                    </li>
-                    <li><span>Address</span> :  Arjan - Dubai</li>
-                </ul>
-                <ul class="social-icons pt-3">
-                    <li class="social-item two" ><a class="social-link" href="https://www.linkedin.com/in/ali-nezamli-0763b421a/"><img src="assets/imgs/linkedin-round-svgrepo-com.svg" width="32px" alt=""></a></li>
-                    <li class="social-item three" ><a class="social-link" href="https://gitlab.com/alinezamli54"><img src="assets/imgs/gitlab-svgrepo-com-colored.svg" width="32px" alt=""></a></li>
-                </ul>  
+    <!-- Hero Section -->
+    <section class="hero">
+        <!-- Animated Background -->
+        <div class="hero-bg">
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+            <div class="orb orb-3"></div>
+            <div class="orb orb-4"></div>
+        </div>
+        <div class="hero-grid"></div>
+        <div class="hero-ring"></div>
+        <div class="hero-particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="shooting-star"></div>
+            <div class="shooting-star"></div>
+            <div class="shooting-star"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-badge">Available for work</div>
+            <h1 class="hero-title">Ali Nezamli</h1>
+            <p class="hero-subtitle">Senior Flutter Developer crafting exceptional mobile experiences</p>
+            <div class="hero-cta">
+                <a href="assets/Ali_Nezamli.pdf" target="_blank" class="btn-primary-custom">
+                    <i class="ti-file"></i> View Resume
+                </a>
+                <a href="#contact" class="btn-secondary-custom">
+                    <i class="ti-email"></i> Get in Touch
+                </a>
             </div>
         </div>
-    </div>
+        <div class="scroll-indicator">
+            <div class="mouse"></div>
+            <span>Scroll</span>
+        </div>
+    </section>
 
-    <!--Resume Section-->
-    <section class="section" id="resume">
-        <div class="container-fuild">
-            <h2 class="mb-5 Resume"><span class="text-danger">My</span> Resume</h2>
-            <div class="cards">
-                <div class="expertise">
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="mt-2">
-                                <h4>Expertise</h4>
-                                <span class="line"></span>  
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="expertise-item">
-                                <h5 class="title text-danger">Herogram - Dubai</h5>
-                                <p class="period"><strong>January 2024 - Present</strong></p>
-                                <p class="role"><em>Product Manager - Flutter Developer</em></p>
-                                <p class="description">
-                                  In my current role as a Flutter Developer, I’ve significantly enhanced my expertise in building and deploying high-quality applications. Working alongside a talented team, I have successfully mastered AI integrations, secure payment systems, and Agile methodologies, consistently delivering impactful solutions and exceeding expectations.
-                                </p>
-                                <ul class="achievements">
-                                  <li>Collaborated with cross-functional teams (designers, AI experts, backend developers) to efficiently deliver Flutter apps, reducing development time by 20%.</li>
-                                  <li>Developed and integrated AI-driven features, improving app functionality and increasing user engagement by 25%.</li>
-                                  <li>Implemented secure payment gateways and robust in-app purchase systems, achieving 100% transaction reliability and significantly enhancing user trust.</li>
-                                  <li>Utilized Agile methodologies effectively, consistently achieving a 98% success rate in meeting project deadlines.</li>
-                                  <li>Led app deployments to Google Play Store and Apple App Store, maintaining a zero rejection rate by adhering to strict platform guidelines.</li>
-                                  <li>Optimized application performance, achieving a 30% improvement in load times and seamless responsiveness across all devices.</li>
-                                  <li>Enhanced application scalability and stability through clean, modular, and maintainable coding practices, reducing bug reports by 40%.</li>
-                                  <li>Proactively identified and resolved technical challenges, enhancing team productivity by 15%.</li>
-                                </ul>
-                              </div>
-
-                              <div class="expertise-item">
-                                <h5 class="title text-danger">StartTech - Dubai, UAE</h5>
-                                <p class="period"><strong>October 2022 - December 2023</strong></p>
-                                <p class="role"><em>Product Manager - Flutter Developer</em></p>
-                                <p class="description">
-                                  Led the Flutter team at StartTech, driving projects from conception to deployment, ensuring high-performance and scalable mobile applications.
-                                </p>
-                                <ul class="achievements">
-                                  <li>Managed testing phases for approximately 100 candidates across 5 countries, selecting top Flutter developer talent.</li>
-                                  <li>Collaborated with engineers to innovate new applications, managing Agile teams using Jira software.</li>
-                                  <li>Proactively addressed bug fixes, feature enhancements, and optimized app performance.</li>
-                                  <li>Ensured high performance, quality, and responsiveness of applications.</li>
-                                  <li>Successfully deployed applications to AppStore and Google Play, conducting code reviews and fostering team collaboration.</li>
-                                </ul>
-                              </div>
-                              
-                              <div class="expertise-item">
-                                <h5 class="title text-danger">Cogent Softech</h5>
-                                <p class="period"><strong>June 2021 - May 2022</strong></p>
-                                <p class="role"><em>Flutter Developer</em></p>
-                                <p class="description">
-                                  Enhanced mobile application functionality, user experience, and performance through efficient and scalable development practices.
-                                </p>
-                                <ul class="achievements">
-                                  <li>Optimized apps for maximum speed, reliability, and scalability.</li>
-                                  <li>Troubleshot, debugged, and deployed applications to the AppStore and Google Play.</li>
-                                  <li>Conducted thorough code reviews, fostering continuous improvement and innovation.</li>
-                                </ul>
-                              </div>
-                              
-                              <div class="expertise-item">
-                                <h5 class="title text-danger">Hashtag9</h5>
-                                <p class="period"><strong>June 2019 - May 2021</strong></p>
-                                <p class="role"><em>Flutter Developer</em></p>
-                                <p class="description">
-                                  Specialized in developing high-quality Flutter mobile applications, managing the full app development lifecycle from concept to maintenance.
-                                </p>
-                                <ul class="achievements">
-                                  <li>Successfully deployed 5 projects to the App Store and Google Play.</li>
-                                  <li>Collaborated effectively with designers, developers, and product managers to meet strict project deadlines.</li>
-                                  <li>Demonstrated strong expertise in Flutter, Dart, and reactive programming.</li>
-                                </ul>
-                              </div>
+    <!-- About Section -->
+    <section class="section" id="about">
+        <div class="section-container">
+            <div class="section-header fade-up">
+                <span class="section-tag">About Me</span>
+                <h2 class="section-title">Who Am I?</h2>
+            </div>
+            <div class="about-grid">
+                <div class="about-content fade-up">
+                    <h3>Senior Flutter Developer</h3>
+                    <p>I am a passionate and results-driven Flutter Application Developer with a proven record of delivering innovative and user-centric mobile applications. My blend of technical expertise and leadership abilities empowers me to tackle complex challenges effectively, consistently exceeding project expectations.</p>
+                    <p>I excel in fast-paced, dynamic environments, efficiently managing multiple projects and thriving under pressure. Committed to continuous learning and professional growth, I am always eager to adopt new skills and technologies to bring additional value to every project I undertake.</p>
+                    <a href="assets/Ali_Nezamli.pdf" download class="btn-primary-custom">
+                        <i class="ti-download"></i> Download CV
+                    </a>
+                </div>
+                <div class="about-info fade-up">
+                    <h3>Personal Info</h3>
+                    <ul class="info-list">
+                        <li>
+                            <span class="label">Birthdate</span>
+                            <span class="value">02/01/1996</span>
+                        </li>
+                        <li>
+                            <span class="label">Email</span>
+                            <a href="mailto:alinezamli54@gmail.com" class="value">alinezamli54@gmail.com</a>
+                        </li>
+                        <li>
+                            <span class="label">Phone</span>
+                            <a href="tel:+971586272210" class="value">+ (971) 586272210</a>
+                        </li>
+                        <li>
+                            <span class="label">Location</span>
+                            <span class="value">Arjan - Dubai</span>
+                        </li>
+                    </ul>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/ali-nezamli-0763b421a/" target="_blank" title="LinkedIn">
+                            <img src="assets/imgs/linkedin-round-svgrepo-com.svg" alt="LinkedIn">
+                        </a>
+                        <a href="https://gitlab.com/alinezamli54" target="_blank" title="GitLab">
+                            <img src="assets/imgs/gitlab-svgrepo-com-colored.svg" alt="GitLab">
+                        </a>
                     </div>
                 </div>
-                <div class="education">
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="mt-2">
-                                <h4>Education</h4>
-                                <span class="line"></span>  
-                            </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="section" id="experience">
+        <div class="section-container">
+            <div class="section-header fade-up">
+                <span class="section-tag">Career</span>
+                <h2 class="section-title">Work Experience</h2>
+            </div>
+            <div class="timeline fade-up">
+                <div class="timeline-item">
+                    <div class="timeline-card">
+                        <div class="timeline-header">
+                            <span class="timeline-company">Herogram - Dubai</span>
+                            <span class="timeline-period">January 2024 - Present</span>
                         </div>
-                        <div class="card-body">
-                            <h6 class="title text-danger">Tishreen University [ 2014 – 2019 ]</h6>
-                            <P>B.E Computer Engineering and Automatic Control</P>
+                        <p class="timeline-role">Product Manager - Flutter Developer</p>
+                        <p class="timeline-description">In my current role as a Flutter Developer, I've significantly enhanced my expertise in building and deploying high-quality applications. Working alongside a talented team, I have successfully mastered AI integrations, secure payment systems, and Agile methodologies.</p>
+                        <ul class="timeline-achievements">
+                            <li>Collaborated with cross-functional teams to efficiently deliver Flutter apps, reducing development time by 20%.</li>
+                            <li>Developed and integrated AI-driven features, improving app functionality and increasing user engagement by 25%.</li>
+                            <li>Implemented secure payment gateways and robust in-app purchase systems, achieving 100% transaction reliability.</li>
+                            <li>Utilized Agile methodologies effectively, consistently achieving a 98% success rate in meeting project deadlines.</li>
+                            <li>Led app deployments to Google Play Store and Apple App Store with a zero rejection rate.</li>
+                            <li>Optimized application performance, achieving a 30% improvement in load times.</li>
+                            <li>Enhanced application scalability through clean, modular coding practices, reducing bug reports by 40%.</li>
+                            <li>Proactively identified and resolved technical challenges, enhancing team productivity by 15%.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-card">
+                        <div class="timeline-header">
+                            <span class="timeline-company">StartTech - Dubai, UAE</span>
+                            <span class="timeline-period">October 2022 - December 2023</span>
+                        </div>
+                        <p class="timeline-role">Product Manager - Flutter Developer</p>
+                        <p class="timeline-description">Led the Flutter team at StartTech, driving projects from conception to deployment, ensuring high-performance and scalable mobile applications.</p>
+                        <ul class="timeline-achievements">
+                            <li>Managed testing phases for approximately 100 candidates across 5 countries, selecting top Flutter developer talent.</li>
+                            <li>Collaborated with engineers to innovate new applications, managing Agile teams using Jira software.</li>
+                            <li>Proactively addressed bug fixes, feature enhancements, and optimized app performance.</li>
+                            <li>Ensured high performance, quality, and responsiveness of applications.</li>
+                            <li>Successfully deployed applications to AppStore and Google Play, conducting code reviews and fostering team collaboration.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-card">
+                        <div class="timeline-header">
+                            <span class="timeline-company">Cogent Softech</span>
+                            <span class="timeline-period">June 2021 - May 2022</span>
+                        </div>
+                        <p class="timeline-role">Flutter Developer</p>
+                        <p class="timeline-description">Enhanced mobile application functionality, user experience, and performance through efficient and scalable development practices.</p>
+                        <ul class="timeline-achievements">
+                            <li>Optimized apps for maximum speed, reliability, and scalability.</li>
+                            <li>Troubleshot, debugged, and deployed applications to the AppStore and Google Play.</li>
+                            <li>Conducted thorough code reviews, fostering continuous improvement and innovation.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-card">
+                        <div class="timeline-header">
+                            <span class="timeline-company">Hashtag9</span>
+                            <span class="timeline-period">June 2019 - May 2021</span>
+                        </div>
+                        <p class="timeline-role">Flutter Developer</p>
+                        <p class="timeline-description">Specialized in developing high-quality Flutter mobile applications, managing the full app development lifecycle from concept to maintenance.</p>
+                        <ul class="timeline-achievements">
+                            <li>Successfully deployed 5 projects to the App Store and Google Play.</li>
+                            <li>Collaborated effectively with designers, developers, and product managers to meet strict project deadlines.</li>
+                            <li>Demonstrated strong expertise in Flutter, Dart, and reactive programming.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="section" id="skills">
+        <div class="section-container">
+            <div class="section-header fade-up">
+                <span class="section-tag">Expertise</span>
+                <h2 class="section-title">Skills & Languages</h2>
+            </div>
+            <div class="skills-grid fade-up">
+                <div class="skill-category">
+                    <h4><span class="icon">&#60;/&#62;</span> Technical Skills</h4>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Dart Programming</span>
+                            <span class="skill-percent">100%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 100%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">State Managements (Bloc, Provider, RiverPod, Getx)</span>
+                            <span class="skill-percent">100%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 100%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">RESTful API</span>
+                            <span class="skill-percent">100%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 100%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Firebase</span>
+                            <span class="skill-percent">100%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 100%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">UI/UX Design Principles</span>
+                            <span class="skill-percent">100%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 100%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Real Time (Socket IO)</span>
+                            <span class="skill-percent">100%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 100%"></div>
                         </div>
                     </div>
                 </div>
-                <div class="skills">
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="pull-left">
-                                <h4 class="mt-2">Skills</h4>
-                                <span class="line"></span>  
-                            </div>
+                <div class="skill-category">
+                    <h4><span class="icon">&#9881;</span> Additional Skills</h4>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Version Control (Git, Bitbucket)</span>
+                            <span class="skill-percent">90%</span>
                         </div>
-                        <div class="card-body pb-2">
-                            <h6>Dart Programming</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <h6>State Managements (Bloc , Provider , RiverPod , Getx)</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            
-                            <h6>RESTful Api</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <h6>Firebase</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <h6>UI/UX Design Principles</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <h6>Real Time (Socket IO)</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <h6>Version Control System (Git,Bitbucket)</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 90%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <h6>kotlin</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 90%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <h6>Swift</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 90%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <h6>Architecture Pattern (MVC, MVVM)</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 90%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <h6>Html</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 80%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <h6>Css</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 80%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 90%"></div>
                         </div>
                     </div>
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="pull-left">
-                                <h4 class="mt-2">Languages</h4>
-                                <span class="line"></span>  
-                            </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Kotlin</span>
+                            <span class="skill-percent">90%</span>
                         </div>
-                        <div class="card-body pb-2">
-                            <h6>Arabic</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <h6>English</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 90%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 90%"></div>
                         </div>
                     </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Swift</span>
+                            <span class="skill-percent">90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Architecture Pattern (MVC, MVVM)</span>
+                            <span class="skill-percent">90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">HTML</span>
+                            <span class="skill-percent">80%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">CSS</span>
+                            <span class="skill-percent">80%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 80%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h4><span class="icon">&#127760;</span> Languages</h4>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Arabic</span>
+                            <span class="skill-percent">Native</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 100%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">English</span>
+                            <span class="skill-percent">90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 90%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top: 4rem;">
+                <div class="section-header fade-up">
+                    <span class="section-tag">Education</span>
+                    <h2 class="section-title">Academic Background</h2>
+                </div>
+                <div class="education-card fade-up">
+                    <div class="education-icon">&#127891;</div>
+                    <h4>Tishreen University</h4>
+                    <p class="period">2014 - 2020</p>
+                    <p>B.E Computer Engineering and Automatic Control</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Portfolio Section -->
-    <section class="section bg-custom-gray" id="portfolio">
-        <div class="container-fuild">
-            <h2 class="mb-5 my-portfolio"><span class="text-danger">My</span> Portfolio</h2>
-            <div class="portfolio">
-                <div class="portfolio-container">
-                    <div class="col-md-6 col-lg-4 web new">
-                        <div class="portfolio-item">
-                          <img src="assets/imgs/advertising-8.png" class="img-fluid" alt="">
-                          <div class="content-holder">
-                            <a class="img-popup" href="assets/imgs/advertising-8.png"></a>
-                            <div class="text-holder text-center">
-                                <h6 class="title">Zumi</h6>
-                                <p class="subtitle">Zumi - movies and action</p>
-                                <div class="d-flex justify-content-center align-items-center gap-2 mt-3">
-                                  <a href="https://apps.apple.com/ae/app/zumi-movies-and-action/id6476808915" target="_blank" rel="noopener">
-                                    <img src="assets/imgs/appstore.png" class="store-badge" alt="Download on the App Store">
-                                  </a>
-                                  <a href="https://play.google.com/store/apps/details?id=com.herogram.animereel&hl=en" target="_blank" rel="noopener">
-                                    <img src="assets/imgs/playstore.webp" class="store-badge" alt="Get it on Google Play">
-                                  </a>
-                                </div>
-                              </div>
-                          </div>
+    <section class="section" id="portfolio">
+        <div class="section-container">
+            <div class="section-header fade-up">
+                <span class="section-tag">Projects</span>
+                <h2 class="section-title">My Portfolio</h2>
+                <p class="section-subtitle">A collection of mobile applications I've developed and shipped to production</p>
+            </div>
+            <div class="portfolio-grid fade-up">
+                <div class="portfolio-card">
+                    <div class="portfolio-image">
+                        <img src="assets/imgs/advertising-8.png" alt="Zumi">
+                        <div class="portfolio-overlay"></div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3 class="portfolio-title">Zumi</h3>
+                        <p class="portfolio-description">Zumi - movies and action</p>
+                        <div class="portfolio-links">
+                            <a href="https://apps.apple.com/ae/app/zumi-movies-and-action/id6476808915" target="_blank">
+                                <img src="assets/imgs/appstore.png" class="store-badge" alt="App Store">
+                            </a>
+                            <a href="https://play.google.com/store/apps/details?id=com.herogram.animereel&hl=en" target="_blank">
+                                <img src="assets/imgs/playstore.webp" class="store-badge" alt="Google Play">
+                            </a>
                         </div>
-                      </div>
-                    <div class="col-md-6 col-lg-4 web new">
-                        <div class="portfolio-item">
-                          <img src="assets/imgs/advertising-7.png" class="img-fluid" alt="">
-                          <div class="content-holder">
-                            <a class="img-popup" href="assets/imgs/advertising-7.png"></a>
-                            <div class="text-holder text-center">
-                                <h6 class="title">BBrain</h6>
-                                <p class="subtitle">Talk to your second brain</p>
-                                <div class="d-flex justify-content-center align-items-center gap-2 mt-3">
-                                  <a href="https://apps.apple.com/ae/app/bbrain/id6448963886?platform=iphone" target="_blank" rel="noopener">
-                                    <img src="assets/imgs/appstore.png" class="store-badge" alt="Download on the App Store">
-                                  </a>
-                                  <a href="https://play.google.com/store/apps/details?id=com.askbrain2.app&hl=en" target="_blank" rel="noopener">
-                                    <img src="assets/imgs/playstore.webp" class="store-badge" alt="Get it on Google Play">
-                                  </a>
-                                </div>
-                              </div>
-                          </div>
+                    </div>
+                </div>
+                <div class="portfolio-card">
+                    <div class="portfolio-image">
+                        <img src="assets/imgs/advertising-7.png" alt="BBrain">
+                        <div class="portfolio-overlay"></div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3 class="portfolio-title">BBrain</h3>
+                        <p class="portfolio-description">Talk to your second brain</p>
+                        <div class="portfolio-links">
+                            <a href="https://apps.apple.com/ae/app/bbrain/id6448963886?platform=iphone" target="_blank">
+                                <img src="assets/imgs/appstore.png" class="store-badge" alt="App Store">
+                            </a>
+                            <a href="https://play.google.com/store/apps/details?id=com.askbrain2.app&hl=en" target="_blank">
+                                <img src="assets/imgs/playstore.webp" class="store-badge" alt="Google Play">
+                            </a>
                         </div>
-                      </div>
-                      <div class="col-md-6 col-lg-4 web new">
-                        <div class="portfolio-item">
-                          <img src="assets/imgs/web-1.png" class="img-fluid" alt="">
-                          <div class="content-holder">
-                            <a class="img-popup" href="assets/imgs/web-1.png"></a>
-                            <div class="text-holder text-center">
-                                <h6 class="title">Qahwa House</h6>
-                                <p class="subtitle">Qahwah House app to order and pick up after a short time</p>
-                                <div class="d-flex justify-content-center align-items-center gap-2 mt-3">
-                                  <a href="https://apps.apple.com/us/app/qahwah-house/id1618025336" target="_blank" rel="noopener">
-                                    <img src="assets/imgs/appstore.png" class="store-badge" alt="Download on the App Store">
-                                  </a>
-                                  <a href="https://play.google.com/store/apps/details?id=com.divcodes.qahwahhouse&hl=en" target="_blank" rel="noopener">
-                                    <img src="assets/imgs/playstore.webp" class="store-badge" alt="Get it on Google Play">
-                                  </a>
-                                </div>
-                              </div>
-                          </div>
+                    </div>
+                </div>
+                <div class="portfolio-card">
+                    <div class="portfolio-image">
+                        <img src="assets/imgs/web-1.png" alt="Qahwa House">
+                        <div class="portfolio-overlay"></div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3 class="portfolio-title">Qahwa House</h3>
+                        <p class="portfolio-description">Qahwah House app to order and pick up after a short time</p>
+                        <div class="portfolio-links">
+                            <a href="https://apps.apple.com/us/app/qahwah-house/id1618025336" target="_blank">
+                                <img src="assets/imgs/appstore.png" class="store-badge" alt="App Store">
+                            </a>
+                            <a href="https://play.google.com/store/apps/details?id=com.divcodes.qahwahhouse&hl=en" target="_blank">
+                                <img src="assets/imgs/playstore.webp" class="store-badge" alt="Google Play">
+                            </a>
                         </div>
-                      </div>
-                      <div class="col-md-6 col-lg-4 web new">
-                        <div class="portfolio-item">
-                          <img src="assets/imgs/web-2.png" class="img-fluid" alt="">
-                          <div class="content-holder">
-                            <a class="img-popup" href="assets/imgs/web-2.png"></a>
-                            <div class="text-holder text-center">
-                                <h6 class="title">MHGBoutique</h6>
-                                <p class="subtitle">MHGboutique, the ultimate house of Emirati luxury, and home to renowned brands</p>
-                                <div class="d-flex justify-content-center align-items-center gap-2 mt-3">
-                                  <a href="https://apps.apple.com/us/app/mhgboutique/id6463312590" target="_blank" rel="noopener">
-                                    <img src="assets/imgs/appstore.png" class="store-badge" alt="Download on the App Store">
-                                  </a>
-                                  <a href="https://play.google.com/store/apps/details?id=com.starttech.mhgboutique" target="_blank" rel="noopener">
-                                    <img src="assets/imgs/playstore.webp" class="store-badge" alt="Get it on Google Play">
-                                  </a>
-                                </div>
-                              </div>
-                          </div>
+                    </div>
+                </div>
+                <div class="portfolio-card">
+                    <div class="portfolio-image">
+                        <img src="assets/imgs/web-2.png" alt="MHGBoutique">
+                        <div class="portfolio-overlay"></div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3 class="portfolio-title">MHGBoutique</h3>
+                        <p class="portfolio-description">MHGboutique, the ultimate house of Emirati luxury, and home to renowned brands</p>
+                        <div class="portfolio-links">
+                            <a href="https://apps.apple.com/us/app/mhgboutique/id6463312590" target="_blank">
+                                <img src="assets/imgs/appstore.png" class="store-badge" alt="App Store">
+                            </a>
+                            <a href="https://play.google.com/store/apps/details?id=com.starttech.mhgboutique" target="_blank">
+                                <img src="assets/imgs/playstore.webp" class="store-badge" alt="Google Play">
+                            </a>
                         </div>
-                      </div>
-                    
-                      <div class="col-md-6 col-lg-4 web new">
-                        <div class="portfolio-item">
-                          <img src="assets/imgs/web-4.png" class="img-fluid" alt="">
-                          <div class="content-holder">
-                            <a class="img-popup" href="assets/imgs/web-4.png"></a>
-                            <div class="text-holder text-center">
-                                <h6 class="title">MHGBoutique</h6>
-                                <p class="subtitle">MHGboutique, the ultimate house of Emirati luxury, and home to renowned brands</p>
-                                <div class="d-flex justify-content-center align-items-center gap-2 mt-3">
-                                  <a href="https://apps.apple.com/us/app/mhgboutique/id6463312590" target="_blank" rel="noopener">
-                                    <img src="assets/imgs/appstore.png" class="store-badge" alt="Download on the App Store">
-                                  </a>
-                                  <a href="https://play.google.com/store/apps/details?id=com.starttech.mhgboutique" target="_blank" rel="noopener">
-                                    <img src="assets/imgs/playstore.webp" class="store-badge" alt="Get it on Google Play">
-                                  </a>
-                                </div>
-                              </div>
-                          </div>
+                    </div>
+                </div>
+                <div class="portfolio-card">
+                    <div class="portfolio-image">
+                        <img src="assets/imgs/advertising-10.png" alt="Spor Qatar">
+                        <div class="portfolio-overlay"></div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3 class="portfolio-title">Spor Qatar</h3>
+                        <p class="portfolio-description">SPOR Qatar connects sports facilities and activities with users who want to stay active and fit. Bringing gyms, sports centers, venues, and personal trainers into a single mobile platform.</p>
+                        <div class="portfolio-links">
+                            <a href="https://apps.apple.com/kw/app/spor-qatar/id1637054336" target="_blank">
+                                <img src="assets/imgs/appstore.png" class="store-badge" alt="App Store">
+                            </a>
+                            <a href="https://play.google.com/store/apps/details?id=com.developerinqatar.spor&hl=en" target="_blank">
+                                <img src="assets/imgs/playstore.webp" class="store-badge" alt="Google Play">
+                            </a>
                         </div>
-                      </div>
-
-                    <div class="col-md-6 col-lg-4 web new">
-                        <div class="portfolio-item">
-                          <img src="assets/imgs/advertising-10.png" class="img-fluid" alt="">
-                          <div class="content-holder">
-                            <a class="img-popup" href="assets/imgs/advertising-10.png"></a>
-                            <div class="text-holder text-center">
-                                <h6 class="title">Spor Qatar</h6>
-                                <p class="subtitle">SPOR Qatar is designed to connect sports facilities and activities with users who want to stay active and fit. The main idea is to bring gyms, sports centers, venues, and personal trainers into a single mobile platform</p>
-                                <div class="d-flex justify-content-center align-items-center gap-2 mt-3">
-                                  <a href="https://apps.apple.com/kw/app/spor-qatar/id1637054336" target="_blank" rel="noopener">
-                                    <img src="assets/imgs/appstore.png" class="store-badge" alt="Download on the App Store">
-                                  </a>
-                                  <a href="https://play.google.com/store/apps/details?id=com.developerinqatar.spor&hl=en" target="_blank" rel="noopener">
-                                    <img src="assets/imgs/playstore.webp" class="store-badge" alt="Get it on Google Play">
-                                  </a>
-                                </div>
-                              </div>
-                          </div>
+                    </div>
+                </div>
+                <div class="portfolio-card">
+                    <div class="portfolio-image">
+                        <img src="assets/imgs/advertising-1.png" alt="Sanaa Cafe">
+                        <div class="portfolio-overlay"></div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3 class="portfolio-title">Sanaa Cafe</h3>
+                        <p class="portfolio-description">Cafe app to order and pickup</p>
+                        <div class="portfolio-links">
+                            <a href="https://apps.apple.com/us/app/sanaa-cafe/id6461773281" target="_blank">
+                                <img src="assets/imgs/appstore.png" class="store-badge" alt="App Store">
+                            </a>
+                            <a href="https://play.google.com/store/apps/details?id=com.divcodes.sanaacafe&hl=en" target="_blank">
+                                <img src="assets/imgs/playstore.webp" class="store-badge" alt="Google Play">
+                            </a>
                         </div>
-                      </div>
-
-                      <div class="col-md-6 col-lg-4 web new">
-                        <div class="portfolio-item">
-                          <img src="assets/imgs/advertising-1.png" class="img-fluid" alt="">
-                          <div class="content-holder">
-                            <a class="img-popup" href="assets/imgs/advertising-1.png"></a>
-                            <div class="text-holder text-center">
-                                <h6 class="title">Sanaa Cafe</h6>
-                                <p class="subtitle">Cafe app to order and pickup</p>
-                                <div class="d-flex justify-content-center align-items-center gap-2 mt-3">
-                                  <a href="https://apps.apple.com/us/app/sanaa-cafe/id6461773281" target="_blank" rel="noopener">
-                                    <img src="assets/imgs/appstore.png" class="store-badge" alt="Download on the App Store">
-                                  </a>
-                                  <a href="https://play.google.com/store/apps/details?id=com.divcodes.sanaacafe&hl=en" target="_blank" rel="noopener">
-                                    <img src="assets/imgs/playstore.webp" class="store-badge" alt="Get it on Google Play">
-                                  </a>
-                                </div>
-                              </div>
-                          </div>
+                    </div>
+                </div>
+                <div class="portfolio-card">
+                    <div class="portfolio-image">
+                        <img src="assets/imgs/advertising-9.png" alt="Ordro">
+                        <div class="portfolio-overlay"></div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3 class="portfolio-title">Ordro</h3>
+                        <p class="portfolio-description">A simple and fast way for businesses in Saudi Arabia to restock their products. Connects you with hundreds of suppliers and thousands of products.</p>
+                        <div class="portfolio-links">
+                            <a href="https://apps.apple.com/de/app/ordro-%D8%A3%D9%88%D8%B1%D8%AF%D8%B1%D9%88/id6466522734" target="_blank">
+                                <img src="assets/imgs/appstore.png" class="store-badge" alt="App Store">
+                            </a>
+                            <a href="https://play.google.com/store/apps/details?id=com.ordro.retailapp&hl=en" target="_blank">
+                                <img src="assets/imgs/playstore.webp" class="store-badge" alt="Google Play">
+                            </a>
                         </div>
-                      </div>
-
-                      <div class="col-md-6 col-lg-4 web new">
-                        <div class="portfolio-item">
-                          <img src="assets/imgs/advertising-9.png" class="img-fluid" alt="">
-                          <div class="content-holder">
-                            <a class="img-popup" href="assets/imgs/advertising-9.png"></a>
-                            <div class="text-holder text-center">
-                                <h6 class="title">Ordro</h6>
-                                <p class="subtitle">*Ordro* is a simple and fast way for businesses in Saudi Arabia to restock their products. Whether you own a grocery store, restaurant, café, or any other business, our app connects you with *hundreds of suppliers* and *thousands of products* to choose from.</p>
-                                <div class="d-flex justify-content-center align-items-center gap-2 mt-3">
-                                  <a href="https://apps.apple.com/de/app/ordro-%D8%A3%D9%88%D8%B1%D8%AF%D8%B1%D9%88/id6466522734" target="_blank" rel="noopener">
-                                    <img src="assets/imgs/appstore.png" class="store-badge" alt="Download on the App Store">
-                                  </a>
-                                  <a href="https://play.google.com/store/apps/details?id=com.ordro.retailapp&hl=en" target="_blank" rel="noopener">
-                                    <img src="assets/imgs/playstore.webp" class="store-badge" alt="Get it on Google Play">
-                                  </a>
-                                </div>
-                              </div>
-                          </div>
+                    </div>
+                </div>
+                <div class="portfolio-card">
+                    <div class="portfolio-image">
+                        <img src="assets/imgs/advertising-3.png" alt="PASS2PAST">
+                        <div class="portfolio-overlay"></div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3 class="portfolio-title">PASS2PAST</h3>
+                        <p class="portfolio-description">The first ever travel machine. Through geolocation, relive the past of your current location as it was decades ago.</p>
+                        <div class="portfolio-links">
+                            <a href="https://apps.apple.com/us/app/pass2past/id6446151882" target="_blank">
+                                <img src="assets/imgs/appstore.png" class="store-badge" alt="App Store">
+                            </a>
+                            <a href="https://play.google.com/store/apps/details?id=com.uranus.pass2past&hl=en" target="_blank">
+                                <img src="assets/imgs/playstore.webp" class="store-badge" alt="Google Play">
+                            </a>
                         </div>
-                      </div>
-
-                      <div class="col-md-6 col-lg-4 web new">
-                        <div class="portfolio-item">
-                          <img src="assets/imgs/advertising-3.png" class="img-fluid" alt="">
-                          <div class="content-holder">
-                            <a class="img-popup" href="assets/imgs/advertising-3.png"></a>
-                            <div class="text-holder text-center">
-                                <h6 class="title">PASS2PAST</h6>
-                                <p class="subtitle">PASS2PAST is the first ever travel machine. Through geolocation, you will be able to relive the past of your current location as it was decades ago</p>
-                                <div class="d-flex justify-content-center align-items-center gap-2 mt-3">
-                                  <a href="https://apps.apple.com/us/app/pass2past/id6446151882" target="_blank" rel="noopener">
-                                    <img src="assets/imgs/appstore.png" class="store-badge" alt="Download on the App Store">
-                                  </a>
-                                  <a href="https://play.google.com/store/apps/details?id=com.uranus.pass2past&hl=en" target="_blank" rel="noopener">
-                                    <img src="assets/imgs/playstore.webp" class="store-badge" alt="Get it on Google Play">
-                                  </a>
-                                </div>
-                              </div>
-                          </div>
+                    </div>
+                </div>
+                <div class="portfolio-card">
+                    <div class="portfolio-image">
+                        <img src="assets/imgs/advertising-4.png" alt="DearBorn News">
+                        <div class="portfolio-overlay"></div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3 class="portfolio-title">DearBorn News</h3>
+                        <p class="portfolio-description">DearBorn news app</p>
+                        <div class="portfolio-links">
+                            <a href="https://apps.apple.com/us/app/dearborn-org/id1658274371" target="_blank">
+                                <img src="assets/imgs/appstore.png" class="store-badge" alt="App Store">
+                            </a>
+                            <a href="https://play.google.com/store/apps/details?id=com.dearbornnews.app&hl=en" target="_blank">
+                                <img src="assets/imgs/playstore.webp" class="store-badge" alt="Google Play">
+                            </a>
                         </div>
-                      </div>
-
-                      <div class="col-md-6 col-lg-4 web new">
-                        <div class="portfolio-item">
-                          <img src="assets/imgs/advertising-4.png" class="img-fluid" alt="">
-                          <div class="content-holder">
-                            <a class="img-popup" href="assets/imgs/advertising-4.png"></a>
-                            <div class="text-holder text-center">
-                                <h6 class="title">DearBorn News</h6>
-                                <p class="subtitle">DearBorn news app</p>
-                                <div class="d-flex justify-content-center align-items-center gap-2 mt-3">
-                                  <a href="https://apps.apple.com/us/app/dearborn-org/id1658274371" target="_blank" rel="noopener">
-                                    <img src="assets/imgs/appstore.png" class="store-badge" alt="Download on the App Store">
-                                  </a>
-                                  <a href="https://play.google.com/store/apps/details?id=com.dearbornnews.app&hl=en" target="_blank" rel="noopener">
-                                    <img src="assets/imgs/playstore.webp" class="store-badge" alt="Get it on Google Play">
-                                  </a>
-                                </div>
-                              </div>
-                          </div>
+                    </div>
+                </div>
+                <div class="portfolio-card">
+                    <div class="portfolio-image">
+                        <img src="assets/imgs/advertising-6.png" alt="Nexus">
+                        <div class="portfolio-overlay"></div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3 class="portfolio-title">Nexus</h3>
+                        <p class="portfolio-description">NEXUS Mobile App is a mobile application for Nexus Clients to access their portfolio online</p>
+                        <div class="portfolio-links">
+                            <a href="https://apps.apple.com/us/app/nexus-client-app/id6448869771" target="_blank">
+                                <img src="assets/imgs/appstore.png" class="store-badge" alt="App Store">
+                            </a>
+                            <a href="https://play.google.com/store/apps/details?id=com.starttech.nexus&hl=en" target="_blank">
+                                <img src="assets/imgs/playstore.webp" class="store-badge" alt="Google Play">
+                            </a>
                         </div>
-                      </div>
-                      
-
-                    <!-- <div class="col-md-6 col-lg-4 branding new" onclick="window.location.href='https://play.google.com/store/apps/details?id=com.divcodes.alburaq.alburaq';" style="cursor: pointer;">
-                        <div class="portfolio-item">
-                            <img src="assets/imgs/advertising-5.png" class="img-fluid" alt="">                        
-                            <div class="content-holder">
-                                <a class="img-popup" href="assets/imgs/advertising-5.png"></a>
-                                <div class="text-holder">
-                                    <h6 class="title">Al Burāq</h6>
-                                    <p class="subtitle">al-Burāq Digital Library is an app for donors to access a tier of Islamic books and read them.</p>
-                                </div>
-                            </div> 
-                        </div>
-                    </div> -->
-                    <div class="col-md-6 col-lg-4 web new">
-                        <div class="portfolio-item">
-                          <img src="assets/imgs/advertising-6.png" class="img-fluid" alt="">
-                          <div class="content-holder">
-                            <a class="img-popup" href="assets/imgs/advertising-6.png"></a>
-                            <div class="text-holder text-center">
-                                <h6 class="title">Nexus</h6>
-                                <p class="subtitle">NEXUS Mobile App is a mobile application for Nexus Clients to access their portfolio online</p>
-                                <div class="d-flex justify-content-center align-items-center gap-2 mt-3">
-                                  <a href="https://apps.apple.com/us/app/nexus-client-app/id6448869771" target="_blank" rel="noopener">
-                                    <img src="assets/imgs/appstore.png" class="store-badge" alt="Download on the App Store">
-                                  </a>
-                                  <a href="https://play.google.com/store/apps/details?id=com.starttech.nexus&hl=en" target="_blank" rel="noopener">
-                                    <img src="assets/imgs/playstore.webp" class="store-badge" alt="Get it on Google Play">
-                                  </a>
-                                </div>
-                              </div>
-                          </div>
-                        </div>
-                      </div>
-
-                    <!-- <div class="col-md-6 col-lg-4 branding">
-                        <div class="portfolio-item">
-                            <img src="assets/imgs/branding-2.jpg" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">  
-                            <div class="content-holder">
-                                <a class="img-popup" href="assets/imgs/branding-2.jpg"></a>
-                                <div class="text-holder">
-                                    <h6 class="title">BRANDING</h6>
-                                    <p class="subtitle">Expedita corporis doloremque velit in totam!</p>
-                                </div>
-                            </div>
-                        </div>                                                     
-                    </div>  -->
-                </div> 
-            </div>  
-        </div>            
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
-    <!-- End of portfolio section -->
-    <!-- Start Footer -->
-    <footer class="footer py-4" id="contact">
-        <div class="container-fuild">
-            <div class="row contact-info-card p-0 m-0">
-                <div class="col-md-3">
-                    <div class="row mb-2">
-                        <div class="col-1 pt-1 mr-1">
-                            <img src="assets/imgs/phone-svgrepo-com.svg" width="22px" alt="">
-                        </div>
-                        <div class="col-10 ">
-                            <h6 class="d-inline">Phone: <br> <a href="tel:+971586272210" class="text-muted">+ (971) 586272210</a></h6>
-                        </div>
-                    </div>
+
+    <!-- Footer / Contact -->
+    <footer class="footer" id="contact">
+        <div class="footer-grid">
+            <div class="footer-item">
+                <div class="footer-icon">
+                    <img src="assets/imgs/phone-svgrepo-com.svg" alt="Phone">
                 </div>
-                <div class="col-md-3">
-                    <div class="row mb-2">
-                        <div class="col-1 pt-1 mr-1">
-                            <img src="assets/imgs/address-svgrepo-com.svg" width="22px" alt="">
-                        </div>
-                        <div class="col-10">
-                            <h6 class="d-inline">Address: <br> <span class="text-muted"> Arjan - Dubai</span></h6>
-                        </div>
-                    </div>
+                <div>
+                    <h6>Phone</h6>
+                    <a href="tel:+971586272210">+ (971) 586272210</a>
                 </div>
-                <div class="col-md-3">
-                    <div class="row mb-2">
-                        <div class="col-1 pt-1 mr-1">
-                            <img src="assets/imgs/email-svgrepo-com.svg" width="22px" alt="">
-                        </div>
-                        <div class="col-10">
-                            <h6 class="d-inline">Email: <br> <a href="mailto:alinezamli54@gmail.com" class="text-muted">alinezamli54@gmail.com</a></h6>
-                        </div>
-                    </div>
+            </div>
+            <div class="footer-item">
+                <div class="footer-icon">
+                    <img src="assets/imgs/address-svgrepo-com.svg" alt="Address">
                 </div>
-                <div class="col-md-3">
-                    <ul class="social-icons icons-footer pt-2">
-                        <!-- <li class="social-item"><a class="social-link text-dark" href="#"><img src="assets/imgs/facebook-round-svgrepo-com.svg" width="32px" alt=""></a></li> -->
-                        <!-- <li class="social-item"><a class="social-link text-dark" href="#"><img src="assets/imgs/twitter-round-svgrepo-com.svg" width="32px" alt=""></a></li> -->
-                        <!-- <li class="social-item"><a class="social-link text-dark" href="#"><img src="assets/imgs/telegram-svgrepo-com.svg" width="32px" alt=""></a></li> -->
-                        <li class="social-item"><a class="social-link text-dark" href="https://www.linkedin.com/in/ali-nezamli-0763b421a/"><img src="assets/imgs/linkedin-round-svgrepo-com.svg" width="32px" alt=""></a></li>
-                        <li class="social-item"><a class="social-link text-dark" href="https://gitlab.com/alinezamli54"><img src="assets/imgs/gitlab-svgrepo-com-colored.svg" width="32px" alt=""></a></li>
-                    </ul>
+                <div>
+                    <h6>Address</h6>
+                    <span>Arjan - Dubai</span>
                 </div>
-                <!-- <h4 class="contact-title">Get in touch</h4> -->
+            </div>
+            <div class="footer-item">
+                <div class="footer-icon">
+                    <img src="assets/imgs/email-svgrepo-com.svg" alt="Email">
+                </div>
+                <div>
+                    <h6>Email</h6>
+                    <a href="mailto:alinezamli54@gmail.com">alinezamli54@gmail.com</a>
+                </div>
+            </div>
+            <div class="footer-social">
+                <a href="https://www.linkedin.com/in/ali-nezamli-0763b421a/" target="_blank" title="LinkedIn">
+                    <img src="assets/imgs/linkedin-round-svgrepo-com.svg" alt="LinkedIn">
+                </a>
+                <a href="https://gitlab.com/alinezamli54" target="_blank" title="GitLab">
+                    <img src="assets/imgs/gitlab-svgrepo-com-colored.svg" alt="GitLab">
+                </a>
             </div>
         </div>
     </footer>
-    <!-- End Footer -->
 
-	<!-- core  -->
-    <script src="assets/vendors/jquery/jquery-3.4.1.js"></script>
-    <script src="assets/vendors/bootstrap/bootstrap.bundle.js"></script>
-    <!-- bootstrap 3 affix -->
-    <script src="assets/vendors/bootstrap/bootstrap.affix.js"></script>
-    <!-- Isotope  -->
-    <script src="assets/vendors/isotope/isotope.pkgd.js"></script>
-    <!-- Google mpas -->
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtme10pzgKSPeJVJrG1O3tjR6lk98o4w8&callback=initMap"></script>
-    <!-- JohnDoe js -->
-    <script src="assets/js/johndoe.js"></script>
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navMenu = document.getElementById('navMenu');
+        mobileToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.navbar-nav-custom a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Active nav link on scroll
+        const sections = document.querySelectorAll('section[id], .hero');
+        const navLinks = document.querySelectorAll('.navbar-nav-custom a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (window.scrollY >= sectionTop) {
+                    current = section.getAttribute('id') || 'home';
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Fade-up animation on scroll
+        const fadeElements = document.querySelectorAll('.fade-up');
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        fadeElements.forEach(el => observer.observe(el));
+
+        // Skill bar animation
+        const skillBars = document.querySelectorAll('.skill-progress');
+        const skillObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const width = entry.target.style.width;
+                    entry.target.style.width = '0';
+                    setTimeout(() => {
+                        entry.target.style.width = width;
+                    }, 100);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        skillBars.forEach(bar => skillObserver.observe(bar));
+    </script>
 </body>
 </html>
